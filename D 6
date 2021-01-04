@@ -1,0 +1,149 @@
+Question 1)
+
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+
+void findMax(stack<int> s)
+{
+    int m = s.top(); 
+
+    int a;
+
+    while (!s.empty())
+    {
+        a = s.top();
+
+        if (m < a)
+            m = a; 
+
+        s.pop(); 
+    }
+
+    cout << "\n\nThe maximum element of the Stack is: " << m << endl;
+}
+
+
+void show(stack<int> s)
+{
+    while (!s.empty())
+    {
+        cout << "  " << s.top(); 
+        s.pop();                
+    }
+
+    cout << endl;
+}
+
+int main()
+{
+    cout << "\n\nWelcome to Studytonight :-)\n\n\n";
+    cout << " =====  Program to Find the Maximum element in the Stack, in CPP  ===== \n\n";
+
+    int i;
+    stack<int> s;
+    cout << "Filling the Stack in LIFO order using the push() method:"; //LIFO= Last In First Out
+
+    s.push(1);
+    s.push(2);
+    s.push(3);
+    s.push(4);
+    s.push(5);
+
+    cout << "\n\nThe elements of the Stack in LIFO order are: ";
+    show(s);
+
+    findMax(s); 
+    return 0;
+}
+
+
+
+Question 2)
+
+
+#include <string>
+#include <stack>
+#include <iostream>
+using namespace std;
+#define INVALID_VALUE 999
+
+class MinStack
+{
+      stack<int> oStack;
+
+      stack<int> minStack;
+public:
+     
+      void push(int item){
+
+            
+            oStack.push(item);
+
+            if(minStack.empty()){
+
+                  minStack.push(item);               
+
+            }else if(item <= minStack.top())
+            {
+                  minStack.push(item);
+            }
+      }  
+
+void pop(){
+
+      if(!oStack.empty() && !oStack.empty() ){
+
+            if( minStack.top() == oStack.top()){
+
+            minStack.pop();
+      }
+      }
+
+      if(!oStack.empty()){
+            oStack.pop(); 
+      }         
+}
+int getMin(){
+
+      if(!minStack.empty()){
+
+            return minStack.top();
+      }
+
+      return INVALID_VALUE;
+}
+int getTop(){     
+
+      if(!oStack.empty()){
+
+            return oStack.top();
+
+      }
+
+      return INVALID_VALUE;
+}
+};
+
+int main(){
+
+      MinStack s;
+
+      s.push(1);
+      s.push(2);
+      s.push(3);
+
+      cout<<"Value :"<<s.getTop();
+      cout<<" Min value :"<<s.getMin()<<endl;     
+
+      s.pop();
+      cout<<"Value :"<<s.getTop();
+      cout<<" Min value :"<<s.getMin()<<endl;
+
+      s.pop();
+      cout<<"Value :"<<s.getTop();
+      cout<<" Min value :"<<s.getMin()<<endl;
+
+      return 0;
+
+}
